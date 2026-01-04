@@ -89,29 +89,6 @@
     <xacro:property name="L06_Iyz" value="0.00000008"/>
     <xacro:property name="L06_Izz" value="0.00014680"/>
 
-    <!-- Link Gripper Stator -->
-    <xacro:property name="GripperStator_Mass" value="0.52603655"/>
-    <xacro:property name="GripperStator_ComX" value="0.04764427"/>
-    <xacro:property name="GripperStator_ComY" value="-0.00035819"/>
-    <xacro:property name="GripperStator_ComZ" value="-0.00249162"/>
-    <xacro:property name="GripperStator_Ixx" value="0.00038683"/>
-    <xacro:property name="GripperStator_Ixy" value="-0.00000359"/>
-    <xacro:property name="GripperStator_Ixz" value="0.00007662"/>
-    <xacro:property name="GripperStator_Iyy" value="0.00068614"/>
-    <xacro:property name="GripperStator_Iyz" value="0.00000209"/>
-    <xacro:property name="GripperStator_Izz" value="0.00066293"/>
-
-    <!-- Link Gripper Mover -->
-    <xacro:property name="GripperMover_Mass" value="0.27621302"/>
-    <xacro:property name="GripperMover_ComX" value="0.01320633"/>
-    <xacro:property name="GripperMover_ComY" value="0.00476708"/>
-    <xacro:property name="GripperMover_ComZ" value="0.00380534"/>
-    <xacro:property name="GripperMover_Ixx" value="0.00017716"/>
-    <xacro:property name="GripperMover_Ixy" value="0.00001683"/>
-    <xacro:property name="GripperMover_Ixz" value="-0.00001786"/>
-    <xacro:property name="GripperMover_Iyy" value="0.00026787"/>
-    <xacro:property name="GripperMover_Iyz" value="0.00000262"/>
-    <xacro:property name="GripperMover_Izz" value="0.00035728"/>
 
     <!-- joint limits -->
     <xacro:property name="jointDamping" value="1.0"/>

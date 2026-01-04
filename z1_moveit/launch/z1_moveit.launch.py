@@ -51,7 +51,7 @@ def launch_setup(context, *args, **kwargs):
     bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(bringup_file),
         launch_arguments={
-            "sim_ignition": sim_ignition,
+            "sim_ignition": "false",
             "rviz": "false",
             "starting_controller": starting_controller,
         }.items(),

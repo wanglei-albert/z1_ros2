@@ -250,79 +250,123 @@
                 izz="${L06_Izz}" />
         </inertial>
     </link>
+    
+    <link name="linkee" />
+
+    <joint name="z1_ee" type="fixed">
+        <origin rpy="0 0.0 0" xyz="0.0615 0 0" />
+        <parent link="link06" />
+        <child link="linkee" />
+    </joint>
 
     <xacro:if value="$(arg with_gripper)">
-        <joint name="gripperStatorLink" type="fixed">
-            <origin rpy="0 0 0" xyz="0.051 0.0 0.0" />
-            <parent link="link06" />
-            <child link="gripperStator" />
+        <joint name="z1_cam" type="fixed">
+            <origin rpy="0 0 0" xyz="0.0 0 0" />
+            <parent link="linkee" />
+            <child link="gripper_base" />
         </joint>
 
-        <link name="gripperStator">
+        <link
+            name="gripper_base">
+            <inertial>
+            <origins
+                xyz="3.09071206167424E-06 0.0136570290393569 0.0415088683800338"
+                rpy="0 0 0" />
+            <mass
+                value="0.290963730546339" />
+            <inertia
+                ixx="0.000378119048651136"
+                ixy="1.38375315500332E-08"
+                ixz="9.0245254852388E-09"
+                iyy="0.000138875447042861"
+                iyz="-2.84830324954564E-05"
+                izz="0.000465004902365846" />
+            </inertial>
             <visual>
+                <origin xyz="0 0 0" rpy="0 1.5708 3.14159" />
                 <geometry>
-                    <mesh filename="package://z1_description/meshes/visual/z1_GripperStator.dae"
-                        scale="1 1 1" />
+                    <mesh filename="package://z1_description/meshes/collision/gripper_base.STL" scale="0.001 0.001 0.001"/>
                 </geometry>
-                <material name="Grey" />
+                <material name="">
+                    <color rgba="0.564705882352941 0.564705882352941 0.564705882352941 1" />
+                </material>
             </visual>
             <collision>
+                <origin xyz="0 0 0" rpy="0 1.5708 3.14159" />
                 <geometry>
-                    <mesh filename="package://z1_description/meshes/collision/z1_GripperStator.STL"
-                        scale="1 1 1" />
+                    <mesh filename="package://z1_description/meshes/collision/gripper_base.STL" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
-            <inertial>
-                <origin rpy="0 0 0"
-                    xyz="${GripperStator_ComX} ${GripperStator_ComY} ${GripperStator_ComZ}" />
-                <mass value="${GripperStator_Mass}" />
-                <inertia
-                    ixx="${GripperStator_Ixx}" ixy="${GripperStator_Ixy}" ixz="${GripperStator_Ixz}"
-                    iyy="${GripperStator_Iyy}" iyz="${GripperStator_Iyz}"
-                    izz="${GripperStator_Izz}" />
-            </inertial>
         </link>
 
-        <joint name="jointGripper" type="revolute">
-            <origin rpy="0 0 0" xyz="0.049 0.0 0" />
-            <parent link="gripperStator" />
-            <child link="gripperMover" />
-            <axis xyz="0 1 0" />
-            <dynamics damping="${jointDamping}" friction="${jointFriction}" />
-            <limit effort="${torqueMax}" velocity="${velocityMax}" lower="${Gripper_PositionMin}"
-                upper="${Gripper_PositionMax}" />
+        <joint name="jointGripper" type="fixed">
+            <origin  xyz="0.0905 0 0" rpy="0 0 0" />
+            <parent link="gripper_base" />
+            <child link="gripper_link" />
+            <axis  xyz="0 0 0" />
         </joint>
 
-        <link name="gripperMover">
+        <link name="gripper_link">
+            <inertial>
+            <origin
+                xyz="7.3899220076612E-16 1.73472347597681E-17 0.0112170244662773"
+                rpy="0 0 0" />
+            <mass
+                value="0.0538139787320802" />
+            <inertia
+                ixx="1.60033199132674E-05"
+                ixy="-1.72437585002249E-10"
+                ixz="-1.20702194983738E-20"
+                iyy="2.57085136841595E-05"
+                iyz="-1.16899878352379E-20"
+                izz="2.29550651892543E-05" />
+            </inertial>
             <visual>
+                <origin xyz="0 0 0" rpy="1.5708 0 1.5708" />
                 <geometry>
-                    <mesh filename="package://z1_description/meshes/visual/z1_GripperMover.dae"
-                        scale="1 1 1" />
+                    <mesh filename="package://z1_description/meshes/collision/gripper_link.STL" />
                 </geometry>
-                <material name="Grey" />
+                <material name="">
+                    <color rgba="1 1 1 1" />
+                </material>
             </visual>
             <collision>
+                <origin xyz="0 0 0" rpy="1.5708 0 1.5708" />
                 <geometry>
-                    <mesh filename="package://z1_description/meshes/collision/z1_GripperMover.STL"
-                        scale="1 1 1" />
+                    <mesh filename="package://z1_description/meshes/collision/gripper_link.STL" />
                 </geometry>
             </collision>
-            <inertial>
-                <origin rpy="0 0 0"
-                    xyz="${GripperMover_ComX} ${GripperMover_ComY} ${GripperMover_ComZ}" />
-                <mass value="${GripperMover_Mass}" />
-                <inertia
-                    ixx="${GripperMover_Ixx}" ixy="${GripperMover_Ixy}" ixz="${GripperMover_Ixz}"
-                    iyy="${GripperMover_Iyy}" iyz="${GripperMover_Iyz}"
-                    izz="${GripperMover_Izz}" />
-            </inertial>
         </link>
 
-        <gazebo reference="gripperStator">
+        <link name="camera_link">
+            <visual>
+                <origin xyz="0.0499 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.025 0.02505" />
+                </geometry>
+                <material name="aluminum"/>
+            </visual>
+            <collision>
+                <origin xyz="0.04990 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.025 0.02505" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="camera_joint" type="fixed">
+            <origin rpy="-1.6034 -0.0629 -1.5489" xyz="-0.0718 0.0494 0.0932" />
+            <parent link="gripper_link" />
+            <child link="camera_link" />
+        </joint>
+
+        <!-- <xacro:sensor_d435 parent="gripper_link">
+            <origin xyz="-0.0718 0.0494 0.0932" rpy="-1.6034 -0.0629 -1.5489"/>
+        </xacro:sensor_d435> -->
+
+        <gazebo reference="gripper_base">
             <self_collide>true</self_collide>
         </gazebo>
-
-        <gazebo reference="gripperMover">
+        <gazebo reference="gripper_link">
             <self_collide>true</self_collide>
         </gazebo>
     </xacro:if>
