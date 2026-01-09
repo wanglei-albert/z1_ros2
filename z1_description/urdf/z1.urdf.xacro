@@ -300,7 +300,7 @@
         </link>
 
         <joint name="jointGripper" type="fixed">
-            <origin  xyz="0.0905 0 0" rpy="0 0 0" />
+            <origin  xyz="0.1205 0 0" rpy="0 0 0" />
             <parent link="gripper_base" />
             <child link="gripper_link" />
             <axis  xyz="0 0 0" />
@@ -309,8 +309,8 @@
         <link name="gripper_link">
             <inertial>
             <origin
-                xyz="7.3899220076612E-16 1.73472347597681E-17 0.0112170244662773"
-                rpy="0 0 0" />
+                xyz="-0.03 1.73472347597681E-17 0.0112170244662773"
+                rpy="1.5708 0 1.5708" />
             <mass
                 value="0.0538139787320802" />
             <inertia
@@ -322,7 +322,7 @@
                 izz="2.29550651892543E-05" />
             </inertial>
             <visual>
-                <origin xyz="0 0 0" rpy="1.5708 0 1.5708" />
+                <origin xyz="-0.03 0 0" rpy="1.5708 0 1.5708" />
                 <geometry>
                     <mesh filename="package://z1_description/meshes/collision/gripper_link.STL" />
                 </geometry>
@@ -331,7 +331,7 @@
                 </material>
             </visual>
             <collision>
-                <origin xyz="0 0 0" rpy="1.5708 0 1.5708" />
+                <origin xyz="-0.03 0 0" rpy="1.5708 0 1.5708" />
                 <geometry>
                     <mesh filename="package://z1_description/meshes/collision/gripper_link.STL" />
                 </geometry>
@@ -354,7 +354,8 @@
             </collision>
         </link>
         <joint name="camera_joint" type="fixed">
-            <origin rpy="-1.6034 -0.0629 -1.5489" xyz="-0.0718 0.0494 0.0932" />
+            <!-- <origin rpy="-1.6034 -0.0629 -1.5489" xyz="-0.0718 0.0494 0.0932" /> -->
+            <origin rpy="-1.5881 -0.0244 -1.5670" xyz="-0.0949 0.0345 0.0879" />
             <parent link="gripper_link" />
             <child link="camera_link" />
         </joint>
