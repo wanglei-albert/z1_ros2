@@ -253,8 +253,13 @@ HardwareInterface::
 
 hardware_interface::return_type
 HardwareInterface::
-        write(const rclcpp::Time& /* time */, const rclcpp::Duration& /* period */) {
+        write(const rclcpp::Time& /*time*/, const rclcpp::Duration&  period) {
     saturate_torque();
+    RCLCPP_INFO(get_logger(), "@write duration: %f, q_cmd: [%f, %f, %f, %f, %f, %f], qd_cmd: [%f, %f, %f, %f, %f, %f]\n", 
+        period.seconds(), 
+        _arm_cmd.q[0],_arm_cmd.q[1],_arm_cmd.q[2],_arm_cmd.q[3],_arm_cmd.q[4],_arm_cmd.q[5],
+        _arm_cmd.qd[0
+        ],_arm_cmd.qd[1],_arm_cmd.qd[2],_arm_cmd.qd[3],_arm_cmd.qd[4],_arm_cmd.qd[5]);
     _arm->setArmCmd(_arm_cmd.q, _arm_cmd.qd, _arm_cmd.tau);
     _arm->setGripperCmd(_gripper_cmd.q, _gripper_cmd.qd, _gripper_cmd.tau);
     _arm->sendRecv();
@@ -338,7 +343,7 @@ HardwareInterface::with_gripper() const {
 
 long
 HardwareInterface::get_joint_id(const std::string& joint_name) const {
-    for (long i = 0; i < joints().size(); ++i) {
+    for (size_t i = 0; i < joints().size(); ++i) {
         if (joints()[i].name == joint_name) return i;
     }
     throw std::out_of_range(
