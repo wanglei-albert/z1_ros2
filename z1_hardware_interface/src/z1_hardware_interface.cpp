@@ -253,8 +253,12 @@ HardwareInterface::
 
 hardware_interface::return_type
 HardwareInterface::
-        write(const rclcpp::Time& /* time */, const rclcpp::Duration& /* period */) {
+        write(const rclcpp::Time& time, const rclcpp::Duration& period) {
     saturate_torque();
+    RCLCPP_INFO(get_logger(), "%f,%f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f",period.seconds(),
+    _arm_cmd.q(1),_arm_cmd.q(2),_arm_cmd.q(3),_arm_cmd.q(4),_arm_cmd.q(5),_arm_cmd.q(6),
+    _arm_cmd.qd(1),_arm_cmd.qd(2),_arm_cmd.qd(3),_arm_cmd.qd(4),_arm_cmd.qd(5),_arm_cmd.qd(6)
+     );
     _arm->setArmCmd(_arm_cmd.q, _arm_cmd.qd, _arm_cmd.tau);
     _arm->setGripperCmd(_gripper_cmd.q, _gripper_cmd.qd, _gripper_cmd.tau);
     _arm->sendRecv();
