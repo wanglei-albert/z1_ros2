@@ -154,17 +154,17 @@ def launch_setup(context, *args, **kwargs):
         condition=is_real,
     )
 
-    # z1_controller_script_path = os.path.join(
-    #     get_package_share_path("z1_hardware_interface"),
-    #     "scripts",
-    #     "z1_controller_process.py"
-    # )
-    # print(z1_controller_script_path)
-    # z1_controller_process = ExecuteProcess(
-    #     cmd=["python3", z1_controller_script_path],
-    #     condition=is_real,
-    #     output="screen",
-    # )
+    z1_controller_script_path = os.path.join(
+        get_package_share_path("z1_hardware_interface"),
+        "scripts",
+        "z1_controller_process.py",
+    )
+    print(z1_controller_script_path)
+    z1_controller_process = ExecuteProcess(
+        cmd=["python3", z1_controller_script_path],
+        condition=is_real,
+        output="screen",
+    )
 
     nodes_to_start += [
         controller_manager_node,

@@ -37,7 +37,6 @@ from moveit_configs_utils import MoveItConfigsBuilder
 from moveit_configs_utils.launches import generate_move_group_launch
 
 
-
 def launch_setup(context, *args, **kwargs):
 
     sim_ignition = LaunchConfiguration("sim_ignition").perform(context)
@@ -60,7 +59,7 @@ def launch_setup(context, *args, **kwargs):
     # move_group.launch.file but with correct setting of "use_sim_time"
     moveit_config = MoveItConfigsBuilder("z1_description", package_name="z1_moveit")
     moveit_config = moveit_config.to_moveit_configs()
-    moveit_config.trajectory_execution["use_sim_time"] = (sim_ignition == "true")
+    moveit_config.trajectory_execution["use_sim_time"] = sim_ignition == "true"
 
     rviz_launch_file = os.path.join(
         get_package_share_path("z1_moveit"), "launch", "moveit_rviz.launch.py"
@@ -75,7 +74,6 @@ def launch_setup(context, *args, **kwargs):
         generate_move_group_launch(moveit_config),
         rviz_launch,
     ]
-
 
 
 def generate_launch_description():
@@ -96,8 +94,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "controller_config",
             default_value=controller_config_default,
-            description=
-            "Path to the controllers.yaml file that can be loaded by the robot"
+            description="Path to the controllers.yaml file that can be loaded by the robot",
         )
     )
 
@@ -111,7 +108,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "starting_controller",
             default_value="joint_trajectory_controller",
-            description="Name of the controller to be started"
+            description="Name of the controller to be started",
         )
     )
 
@@ -119,7 +116,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "sim_ignition",
             default_value="true",
-            description="Launch simulation in Ignition Gazebo?"
+            description="Launch simulation in Ignition Gazebo?",
         )
     )
 
@@ -131,7 +128,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "rviz_config",
             default_value=rviz_config_default,
-            description="Path to RViz configuration file"
+            description="Path to RViz configuration file",
         )
     )
 

@@ -385,10 +385,11 @@
         </gazebo>
     </xacro:if>
 
-    <xacro:z1_ros2_control
+    <!-- diable z1_hardware interface to use our interploting algorithm -->
+    <!-- <xacro:z1_ros2_control
         name="$(arg name)"
         prefix="$(arg prefix)"
         sim_ignition="$(arg sim_ignition)"
-        with_gripper="$(arg with_gripper)" />
+        with_gripper="$(arg with_gripper)" /> -->
 
 </robot>
