@@ -355,7 +355,7 @@
         </link>
         <joint name="camera_joint" type="fixed">
             <!-- <origin rpy="-1.6034 -0.0629 -1.5489" xyz="-0.0718 0.0494 0.0932" /> -->
-            <origin rpy="-1.5881 -0.0244 -1.5670" xyz="-0.0949 0.0345 0.0879" />
+            <origin rpy="-1.5860 -0.0219 -1.5744" xyz="-0.0943 0.0218 0.0898" />
             <parent link="gripper_link" />
             <child link="camera_link" />
         </joint>

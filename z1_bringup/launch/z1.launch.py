@@ -168,7 +168,7 @@ def launch_setup(context, *args, **kwargs):
 
     nodes_to_start += [
         controller_manager_node,
-        # z1_controller_process,
+        z1_controller_process,
     ]
 
     #  ___            _ _   _
